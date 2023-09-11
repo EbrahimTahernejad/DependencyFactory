@@ -10,4 +10,5 @@ import Combine
 
 open class BaseViewModel: ObservableObject {
     public var cancelBag: Set<AnyCancellable> = []
+    public init() {}
 }

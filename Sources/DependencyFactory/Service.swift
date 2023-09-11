@@ -10,4 +10,5 @@ import Combine
 
 open class BaseService: ObservableObject {
     public var cancelBag: Set<AnyCancellable> = []
+    public init() {}
 }
