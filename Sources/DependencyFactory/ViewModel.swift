@@ -8,6 +8,6 @@
 import Foundation
 import Combine
 
-class BaseViewModel: ObservableObject {
-    var cancelBag: Set<AnyCancellable> = []
+open class BaseViewModel: ObservableObject {
+    public var cancelBag: Set<AnyCancellable> = []
 }

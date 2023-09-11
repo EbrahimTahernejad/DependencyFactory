@@ -10,28 +10,28 @@ import SwiftUI
 import Combine
 
 @propertyWrapper
-struct Injected<T> {
+public struct Injected<T> {
     private var dependency: T?
     
-    init(_ keyPath: KeyPath<Container, Factory<T>>) {
+    public init(_ keyPath: KeyPath<Container, Factory<T>>) {
         self.dependency = Container.shared[keyPath: keyPath]()
     }
     
-    init<C: ManagedContainer>(_ keyPath: KeyPath<C, Factory<T>>, in container: C) {
+    public init<C: ManagedContainer>(_ keyPath: KeyPath<C, Factory<T>>, in container: C) {
         self.dependency = container[keyPath: keyPath]()
     }
     
-    var wrappedValue: T {
+    public var wrappedValue: T {
         get { return dependency! }
         mutating set { dependency = newValue }
     }
 
-    var projectedValue: Injected<T> {
+    public var projectedValue: Injected<T> {
         get { return self }
         mutating set { self = newValue }
     }
     
-    static subscript<OuterSelf: ObservableObject>(
+    public static subscript<OuterSelf: ObservableObject>(
         _enclosingInstance observed: OuterSelf,
         wrapped wrappedKeyPath: ReferenceWritableKeyPath<OuterSelf, T>,
         storage storageKeyPath: ReferenceWritableKeyPath<OuterSelf, Self>

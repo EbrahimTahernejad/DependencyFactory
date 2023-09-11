@@ -8,6 +8,6 @@
 import Foundation
 import Combine
 
-class BaseService: ObservableObject {
-    var cancelBag: Set<AnyCancellable> = []
+open class BaseService: ObservableObject {
+    public var cancelBag: Set<AnyCancellable> = []
 }
