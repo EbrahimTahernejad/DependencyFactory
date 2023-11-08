@@ -10,7 +10,7 @@ import Combine
 
 open class BaseService: NSObject, ObservableObject {
     public var cancelBag: Set<AnyCancellable> = []
-    public init() {
+    public override init() {
         super.init()
     }
 }
