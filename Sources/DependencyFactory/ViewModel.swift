@@ -8,7 +8,9 @@
 import Foundation
 import Combine
 
-open class BaseViewModel: ObservableObject {
+open class BaseViewModel: NSObject, ObservableObject {
     public var cancelBag: Set<AnyCancellable> = []
-    public init() {}
+    public init() {
+        super.init()
+    }
 }
