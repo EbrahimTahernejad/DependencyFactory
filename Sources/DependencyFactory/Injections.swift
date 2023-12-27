@@ -55,7 +55,9 @@ public struct Injected<T> {
     // Use a closure to weakly reference _enclosingInstance.
     private mutating func setup<OuterSelf: ObservableObject>(_ enclosingInstance: OuterSelf) where OuterSelf.ObjectWillChangePublisher == ObservableObjectPublisher {
         cancellable = (wrappedValue as? BaseService)?.objectWillChange.receive(on: RunLoop.main).sink(receiveValue: { [weak enclosingInstance] _ in
-            (enclosingInstance?.objectWillChange)?.send()
+            DispatchQueue.main.async { [weak enclosingInstance] () in
+                (enclosingInstance?.objectWillChange)?.send()
+            }
         })
     }
 
